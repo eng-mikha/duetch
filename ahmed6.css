@@ -6,6 +6,10 @@
 body {
     background-color: var(--bgcolor);
 }
+button {
+    background-color: #4caf4f00;
+    border: none;
+}
 .parent {
     display: flex;
     position: relative;
@@ -18,15 +22,25 @@ body {
     justify-content: space-evenly;
     align-content: space-evenly;
     align-items: center;
+    /* counter  */
+    counter-reset: section;
+}
+.header {
+    background-color: white;
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 5px;
+    box-shadow: var(--shadowcolor) 0px 0px 7px 1px;
+    color: #006e2e;
 }
 .child {
     position: relative;
     margin: 20px auto;
-    background-color: #72f0bf;
-    counter-increment: count;
 }
 .child::after {
-    content: counter(count);
+    /* counter  */
+    counter-increment: section;
+    content: counter(section);
     position: absolute;
     width: 30px;
     height: 30px;
@@ -65,7 +79,13 @@ body {
     font-family: cursive;
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
 }
 img {
     width: 150px;
+    transition: all .5s;
+}
+img:hover {
+    width: 210px;
+    transform: translateX(-10px);
 }
