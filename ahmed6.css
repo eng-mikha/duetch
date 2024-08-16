@@ -76,7 +76,7 @@ button {
     border-radius: 5px;
     box-shadow: var(--shadowcolor) 0px 0px 7px 1px;
     margin-top: 10px;
-    font-family: cursive;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: bold;
     cursor: pointer;
