@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --maincolor : rgb(201 235 213);
+}
+body {
+    background-image: url(images/henry.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: cursive;
+    font-weight: bold;
+    /* color: white; */
+}
+img {
+    width: 500px;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(12 , 1fr);
+    grid-template-areas: "logo logo logo logo nav nav nav nav nav nav nav nav" 
+                        "cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1"
+                        "cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2"
+                        "about about about about about about about about about about about about"
+                        "foot foot foot foot foot foot foot foot foot foot foot foot";
+    grid-template-rows: repeat(9, 1fr);
+    width: 100%;
+    height: 100vb;
+}
+
+
+/* header  */
+h1 {
+    position: relative;
+    grid-area: logo;
+    background-color: var(--maincolor);
+    height: 60px;
+    padding-left: 30px;
+    font-size: 35px;
+    z-index: 3;
+    box-shadow: white 5px 0px 5px 1px;
+}
+h1::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 80%;
+    background-color: rgba(1, 53, 3, 0.404);
+    border-radius: 5px;
+    top: 10%;
+    left: 5px;
+}
+nav {
+    display: grid;
+    align-items: center;
+    grid-area: nav;
+    background-color: var(--maincolor);
+    box-shadow: white 5px 0px 5px 1px;
+    z-index: 3;
+}
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    transition: all 1s;
+    position: relative;
+}
+ul::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 30px;
+    background-color: rgba(1, 53, 3, 0.404);
+    border-radius: 5px;
+    /* top: 5%; */
+    left: 5px;
+}
+li {
+    /* display: inline-block; */
+    transition: all .4s;
+}
+li:hover {
+    background-color: aliceblue;
+    padding: 10px 30px;
+    border-radius: 4px;
+}
+nav a {
+    text-decoration: none;
+    color: black;
+    transition: all 1s;
+}
+
+/* learn and the photo */
+.learnwm {
+    position: relative;
+    display: grid;
+    align-items: center;
+    grid-area: cont1;
+    background-color:white;
+    height: 100vb;
+    color: black;
+    transition: all 1s;
+}
+.learnwm p {
+    display: inline-block;
+    font-size: 60px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(1 53 3);
+}
+.learnwm span p {
+    font-size: 40px;
+}
+.learnwm div {
+    display: grid;
+    align-content: center;
+    grid-column: 2 / span 4;
+}
+.learnwm h2 {
+    font-size: 50px;
+    margin-bottom: 100px;
+}
+.learnwm span {
+    font-size: 30px;
+}
+.learnwm img {
+    display: grid;
+    grid-column: 9 / span 3;
+}
+
+
+/* go to lesson  */
+.lesson {
+    display: grid;
+    grid-area: cont2;
+    background-color: rgba(0, 255, 128, 0.315);
+    height: 100vb;
+    align-content: space-evenly;
+}
+.lesson span {
+    color: white;
+    grid-column: 2 / span 4 ;
+    font-size: 35px;
+}
+.lesson a {
+    text-decoration: none;
+    grid-column: 4 / span 5;
+    background: rgb(1 53 3);
+    width: 50%;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    font-size: 25px;
+    border-radius: 5px;
+}
+.lesson a:hover {
+    background: rgba(1, 53, 3, 0.507);
+    transition: all .4s;
+}
+/* about sec  */
+.about {
+    display: grid;
+    grid-area: about;
+    background-color: rgb(255, 255, 255);
+    height: 100vb;
+    align-content: space-evenly;
+}
+.about div {
+    display: grid;
+    grid-column: 1 / 7;
+}
+.about span {
+    display: grid;
+    font-size: 50px;
+    margin-left: 30px;
+    grid-column: 2 / 5;
+    color: #4caf50;
+}
+.about p {
+    display: grid;
+    font-size: 30px;
+    grid-column: 4 / 6;
+}
+.about img {
+    display: grid;
+    grid-column: 7 / 12;
+}
+footer {
+    grid-area: foot;
+    color: white;
+    background-color: rgb(48, 226, 137);
+    height: fit-content;
+    display: grid;
+}
+footer div {
+    margin: 40px;
+}
+footer span {
+    font-size: 30px;
+}
+footer a {
+    text-decoration: none;
+    font-size: 30px;
+    display: block;
+    width: 400px;
+    margin: auto;
+}
+footer p {
+    width: 200px;
+    margin: auto;
+}
+
+@media (max-width: 860px) {
+    
+    img {
+        width: 400px;
+    }
+    .learnwm p {
+        font-size: 35px;
+    }
+    .learnwm span p {
+        font-size: 25px;
+    }
+    .learnwm h2{
+        font-size: 30px;
+    }
+        .learnwm span{
+        font-size: 15px;
+    }
+    .about span{
+        font-size: 35px;
+    }
+    .about p{
+        font-size: 20px;
+    }
+}
+@media (max-width: 730px) {
+    img {
+        width: 300px;
+    }
+        .learnwm{
+            display: flex;
+            align-content: space-evenly;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .about {
+                    display: flex;
+                        align-items: center;
+                        flex-wrap: wrap;
+                        align-content: space-around;
+                        justify-content: center;
+        }
+        footer span {
+            font-size: 20px;
+        }
+        footer a {
+            font-size: 20px;
+        }
+        .lesson span {
+            font-size: 25px;
+        }
+        .lesson a {
+            font-size: 20px;
+        }
+}
