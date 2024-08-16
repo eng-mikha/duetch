@@ -1240,8 +1240,8 @@
 
                 utterance.text = text;
                 utterance.lang = "de-DE";
-                utterance.voice = synth.getVoices().find(voice => voice.lang === "de-DE");
-                utterance.rate = 1.0;
+                utterance.voice = synth.getVoices().find(voice => voice.lang === "ar-SA");
+                utterance.rate = 1;
                 utterance.pitch = 1.0;
                 utterance.volume = 1.0;
 
@@ -1254,6 +1254,71 @@
                     speakText(element.textContent);
                 });
             });
-    </script>>
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+            // 
+
+    let voices = [];
+    const synth = window.speechSynthesis;
+
+    // تحميل قائمة الأصوات عند بداية تشغيل الصفحة
+    function loadVoices() {
+        voices = synth.getVoices();
+
+        // التحقق من تحميل الأصوات بالكامل
+        if (!voices.length) {
+            synth.onvoiceschanged = () => {
+                voices = synth.getVoices();
+            };
+        }
+    }
+
+    // تشغيل الصوت للنص المحدد
+    function speakText(text) {
+        // إلغاء النطق الحالي إذا كان هناك نطق قيد التشغيل
+        if (synth.speaking) {
+            synth.cancel();  // إلغاء النطق الحالي
+        }
+
+        let utterance = new SpeechSynthesisUtterance(text);
+
+        // حاول إيجاد الصوت الألماني
+        let selectedVoice = voices.find(voice => voice.lang === "de-DE");
+
+        // إذا لم يكن الصوت الألماني متاحًا، اختر صوتًا افتراضيًا
+        if (!selectedVoice) {
+            selectedVoice = voices.find(voice => voice.lang.startsWith('de')) || voices[0];
+        }
+
+        // إعدادات الصوت
+        utterance.voice = selectedVoice;
+        utterance.lang = "de-DE";  // تأكد من تعيين اللغة الألمانية
+        utterance.rate = 1;
+        utterance.pitch = 1.0;
+        utterance.volume = 1.0;
+
+        // نطق النص
+        synth.speak(utterance);
+    }
+
+    // تأكد من تحميل الأصوات عند فتح الصفحة
+    window.onload = loadVoices;
+
+    // تطبيق الوظيفة على العناصر المحددة
+    document.querySelectorAll('.speak-text').forEach(element => {
+        element.addEventListener('click', () => {
+            speakText(element.textContent);
+        });
+    });
+
+
+
+    </script>
 </body>
 </html>
