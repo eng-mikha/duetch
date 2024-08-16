@@ -192,7 +192,8 @@ footer {
     color: white;
     background-color: rgb(48, 226, 137);
     height: fit-content;
-    display: grid;
+    display: flex;
+    position: relative;
 }
 footer div {
     margin: 40px;
@@ -208,8 +209,11 @@ footer a {
     margin: auto;
 }
 footer p {
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
     width: 200px;
-    margin: auto;
+    /* margin: auto; */
 }
 
 @media (max-width: 860px) {
