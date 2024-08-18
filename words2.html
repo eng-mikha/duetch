@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="words2.css">
+    <title>die Menschen</title>
+</head>
+<body>
+    <div class="parent">
+        <header>
+            <h1 class="speak-text">Lektion zwei : die Menschen - الدرس الثانى : الناس</h1>
+        </header>
+        <div class="words"> 
+            <!-- words part  -->
+            <div class="part">
+                <div class="partname speak-text">
+                    <h2>der Korper - البدن</h2>
+                </div>
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+
+
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- another part  -->
+            <div class="part">
+                <div class="partname speak-text">
+                    <h2></h2>
+                </div>
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+
+
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+                <!-- another word  -->
+                <div class="child speak-text">
+                    <div class="imagephoto">
+                        <img src="w2images/" alt="">
+                    </div>
+                    <div class="word">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- end of parent  -->
+    </div>
+    <!-- js code  -->
+    
+    <script>
+        // function to read the word 
+        function speakText(text) {
+            const synth = window.speechSynthesis;
+            let utterance = new SpeechSynthesisUtterance();
+
+            utterance.text = text;
+            utterance.lang = "de-DE";
+            utterance.voice = synth.getVoices().find(voice => voice.lang === "ar-SA");
+            utterance.rate = 1;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            synth.speak(utterance);
+        }
+
+        // تطبيق الوظيفة على العناصر المحددة
+        document.querySelectorAll('.speak-text').forEach(element => {
+            element.addEventListener('click', () => {
+                speakText(element.textContent);
+            });
+        });
+        // 
+        // 
+        // 
+        // 
+        // 
+        // 
+        // 
+        // 
+        // 
+
+        let voices = [];
+        const synth = window.speechSynthesis;
+
+        // تحميل قائمة الأصوات عند بداية تشغيل الصفحة
+        function loadVoices() {
+            voices = synth.getVoices();
+
+            // التحقق من تحميل الأصوات بالكامل
+            if (!voices.length) {
+                synth.onvoiceschanged = () => {
+                    voices = synth.getVoices();
+                };
+            }
+        }
+
+        // تشغيل الصوت للنص المحدد
+        function speakText(text) {
+            // إلغاء النطق الحالي إذا كان هناك نطق قيد التشغيل
+            if (synth.speaking) {
+                synth.cancel();  // إلغاء النطق الحالي
+            }
+
+            let utterance = new SpeechSynthesisUtterance(text);
+
+            // حاول إيجاد الصوت الألماني
+            let selectedVoice = voices.find(voice => voice.lang === "de-DE");
+
+            // إذا لم يكن الصوت الألماني متاحًا، اختر صوتًا افتراضيًا
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => voice.lang.startsWith('de')) || voices[0];
+            }
+
+            // إعدادات الصوت
+            utterance.voice = selectedVoice;
+            utterance.lang = "de-DE";  // تأكد من تعيين اللغة الألمانية
+            utterance.rate = 1;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+
+            // نطق النص
+            synth.speak(utterance);
+        }
+
+        // تأكد من تحميل الأصوات عند فتح الصفحة
+        window.onload = loadVoices;
+
+        // تطبيق الوظيفة على العناصر المحددة
+        document.querySelectorAll('.speak-text').forEach(element => {
+            element.addEventListener('click', () => {
+                speakText(element.textContent);
+            });
+        });
+
+
+
+    </script>
+</body>
+</html>
