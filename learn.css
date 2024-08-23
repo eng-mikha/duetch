@@ -1,271 +1,367 @@
+/* Start Global Rules */
 * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 :root {
-    --maincolor : rgb(201 235 213);
+    --maincolor: rgb(201 235 213);
+    --font-c : rgb(1 53 3);
+    --border-c :#29551e;
+    --s-bgcolor: rgba(0, 255, 128, 0.315);
+    --m-padding: 60px;
+}
+html {
+    scroll-behavior: smooth;
 }
 body {
-    background-image: url(images/henry.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    /* color: white; */
-}
-img {
-    width: 500px;
-}
-.container {
-    display: grid;
-    grid-template-columns: repeat(12 , 1fr);
-    grid-template-areas: "logo logo logo logo nav nav nav nav nav nav nav nav" 
-                        "cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1 cont1"
-                        "cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2 cont2"
-                        "about about about about about about about about about about about about"
-                        "foot foot foot foot foot foot foot foot foot foot foot foot";
-    grid-template-rows: repeat(9, 1fr);
-    width: 100%;
-    height: 100vb;
-}
-
-
-/* header  */
-h1 {
-    position: relative;
-    grid-area: logo;
-    background-color: var(--maincolor);
-    height: 60px;
-    padding-left: 30px;
-    font-size: 35px;
-    z-index: 3;
-    box-shadow: white 5px 0px 5px 1px;
-}
-h1::after {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 80%;
-    background-color: rgba(1, 53, 3, 0.404);
-    border-radius: 5px;
-    top: 10%;
-    left: 5px;
-}
-nav {
-    display: grid;
-    align-items: center;
-    grid-area: nav;
-    background-color: var(--maincolor);
-    box-shadow: white 5px 0px 5px 1px;
-    z-index: 3;
+    font-family: "open sans", "sans-serif";
 }
 ul {
     list-style: none;
+}
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Small */
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+/* Medium */
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+/* Large */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+/* End Components */
+
+/* start nav bar  */
+.back {
+    position: fixed;
+    background-image: url(images/henry.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100vb;
+    z-index: -1;
+    max-width: 100%;
+}
+.head {
+    position: relative;
+    background-color: var(--maincolor);
+    z-index: 1;
+    max-width: 100%;
+}
+.head .container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--maincolor);
+    height: 50px;
+}
+.head .container h1 {
+    font-weight: bold;
+}
+.head .container ul {
     display: flex;
     justify-content: space-evenly;
-    transition: all 1s;
-    position: relative;
+    margin-left: 100px;
+    height: 100%;
+    flex-basis: 70%;
 }
-ul::before {
-    content: '';
-    position: absolute;
-    width: 8px;
-    height: 30px;
-    background-color: rgba(1, 53, 3, 0.404);
-    border-radius: 5px;
-    /* top: 5%; */
-    left: 5px;
-}
-li {
-    /* display: inline-block; */
-    transition: all .4s;
-}
-li:hover {
-    background-color: aliceblue;
-    padding: 10px 30px;
-    border-radius: 4px;
-}
-nav a {
-    text-decoration: none;
-    color: black;
-    transition: all 1s;
-}
-
-/* learn and the photo */
-.learnwm {
-    position: relative;
-    display: grid;
-    align-items: center;
-    grid-area: cont1;
-    background-color:white;
-    height: 100vb;
-    color: black;
-    transition: all 1s;
-}
-.learnwm p {
-    display: inline-block;
-    font-size: 60px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: rgb(1 53 3);
-}
-.learnwm span p {
-    font-size: 40px;
-}
-.learnwm div {
-    display: grid;
-    align-content: center;
-    grid-column: 2 / span 4;
-}
-.learnwm h2 {
-    font-size: 50px;
-    margin-bottom: 100px;
-}
-.learnwm span {
+.head .container > i {
+    display: none;
     font-size: 30px;
 }
-.learnwm img {
-    display: grid;
-    grid-column: 9 / span 3;
-}
 
-/* go to lesson  */
-.lesson {
-    display: grid;
-    grid-area: cont2;
-    background-color: rgba(0, 255, 128, 0.315);
-    height: 100vb;
-    align-content: space-evenly;
+@media (max-width: 768px) {
+    .head .container ul {
+        display: none;
+    }
+    .head .container > i {
+        display: block;
+    }
+    .head .container > i:hover + ul{
+        display: flex;
+        position: absolute;
+        flex-direction: column;
+        right: 10px;
+        top: 60px;
+        background: var(--maincolor);
+        margin: 0;
+        height: fit-content;
+        width: 200px;
+        border-radius: 5px;
+    }
+    .head .container > i:hover + ul::after {
+        content: '';
+        position: absolute;
+        top: -16px;
+        right: 6px;
+        /* width: 30px; */
+        /* height: 30px; */
+        /* background: #333; */
+        border: 8px solid rgb(121 227 158);
+        border-color: transparent transparent var(--maincolor) transparent;
+    }
+    .head .container > i:hover + ul li {
+        padding: 10px;
+        
+    }
+    .head .container > i:hover + ul li:hover {
+        padding-left: 20px;
+        
+    }
+    .head .container > i:hover + ul li:not(:last-child) {
+        border-bottom: 1px solid black;
+    }
 }
-.lesson span {
-    color: white;
-    grid-column: 2 / span 4 ;
-    font-size: 35px;
+.head .container ul li {
+    display: inline-block;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    transition: all 0.3s;
+}
+.head .container ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--font-c);
+}
+.head .container ul li:hover {
+     background-color: rgb(231 255 239); /*rgb(103 229 147) */
+    border-bottom: 1px solid var(--border-c);
+}
+/* end nav bar  */
+/* start first section bar  */
+.learnwm {
+    background-color: white;
+}
+.learnwm .container {
+    display: flex;
+    min-height: calc(100vb - 50px);
+    align-items: center;
+    justify-content: space-between;
+}
+.learnwm .container div h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+.learnwm .container div h2 span {
+    font-size: 45px;
+    color: var(--font-c);
+}
+.learnwm .container div span {
+    font-size: 20px;
+    font-weight: bold;
+}
+.learnwm .container div span span {
+    font-size: 25px;
+    color: var(--font-c);
+}
+.learnwm .container img {
+    width: 400px;
+}
+@media (max-width: 992px) {
+    .learnwm .container div h2 {
+        font-size: 30px;
+    }
+}
+@media (max-width: 768px) {
+    .learnwm .container {
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+    }
+    .learnwm .container img {
+        max-width: 360px;
+    }
+}
+/* end first section bar  */
+/* start of "go to any lesson page" */
+.lesson {
+    background-color: var(--s-bgcolor);
+    padding-bottom: var(--m-padding);
+    padding-top: var(--m-padding);
+    min-height: 80vb;
 }
 .lesson a {
     text-decoration: none;
-    grid-column: 4 / span 5;
-    background: rgb(1 53 3);
-    width: 50%;
-    text-align: center;
+}
+.lesson .container > span {
     color: white;
-    padding: 20px;
-    font-size: 25px;
-    border-radius: 5px;
+    font-size: 35px;
+    font-weight: bold;
 }
-.lesson a:hover {
-    background: rgba(1, 53, 3, 0.507);
-    transition: all .4s;
-}
-/* about sec  */
-.about {
+.lesson .container > div {
     display: grid;
-    grid-area: about;
-    background-color: rgb(255, 255, 255);
-    height: 100vb;
-    align-content: space-evenly;
+    grid-template-columns: repeat(auto-fill , minmax(350px , 1fr));
+    gap: 20px;
+    margin-top: 35px;
+    max-width: 100%;
 }
-.about div {
-    display: grid;
-    grid-column: 1 / 7;
-}
-.about span {
-    display: grid;
-    font-size: 50px;
-    margin-left: 30px;
-    grid-column: 2 / 5;
-    color: #4caf50;
-}
-.about p {
-    display: grid;
-    font-size: 30px;
-    grid-column: 4 / 6;
-}
-.about img {
-    display: grid;
-    grid-column: 7 / 12;
-}
-footer {
-    grid-area: foot;
-    color: white;
-    background-color: rgb(48, 226, 137);
-    height: fit-content;
+.lesson .container > div span {
+    background-color: rgb(1 53 3);
+    padding: 10px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    transition: all 0.3s;
+    min-height: 100px;
+    max-width: 100%;
+}
+.lesson .container > div a > span:hover {
+    background-color: rgba(1, 53, 3, 0.507);
+}
+.lesson .container > div a span  {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+/* end of "go to any lesson page" */
+/* start about  */
+.about {
+    background-color: white;
+    padding-bottom: var(--m-padding);
+    padding-top: var(--m-padding);
+    min-height: 100vb;
+    display: flex;
+}
+.about .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (max-width: 992px) {
+    .about .container img {
+        max-width: 400px;
+    }
+}
+@media (max-width: 768px) {
+    .about .container {
+        flex-direction: column;
+        text-align: center;
+        justify-content: space-around;
+    }
+    .about .container div {
+        justify-content: center;
+    }
+    .about .container img {
+        max-width: 300px;
+        order: -1;
+    }
+}
+.about .container div {
+    display: flex;
+    flex-wrap: wrap;
+}
+.about .container div span {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--font-c);
+    margin-bottom: 30px;
+}
+.about .container div p {
+    font-size: 20px;
+}
+/* end about  */
+/* start footer  */
+footer {
+    background-color:rgb(0 75 38 / 68%);
+    padding-top: var(--m-padding);
     position: relative;
+    text-align: center;
 }
-footer div {
-    margin: 40px;
-}
-footer span {
+footer .container i {
     font-size: 30px;
+    color: white;
 }
-footer a {
+footer .container a {
+    color: white;
     text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 135px;
+    justify-content: space-between;
+}
+footer .container > div {
+    margin-bottom: 30px;
+}
+footer .container div .text {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 150px;
+    justify-content: flex-start;
+    width: 600px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    align-content: space-around;
+}
+footer .container div .text span {
+    display: flex;
+    width: 600px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+}
+@media (max-width: 768px) {
+    footer .container div .text span {
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    footer .container div .text {
+        width: 100%;
+        align-content: space-between;
+        position: relative;
+        top: -12px;
+    }
+    footer .container i {
+        margin: 10px;
+    }
+}
+footer .container > span{
+    position: relative;
     font-size: 30px;
-    display: block;
-    width: 400px;
-    margin: auto;
+    font-weight: bold;
+    color: white;
+    top: -35px;
 }
-footer p {
-    position: absolute;
-    bottom: 10px;
-    left: 50px;
-    width: 200px;
-    /* margin: auto; */
+footer > p {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: inline-block;
+    width: 100%;
+    padding: 20px;
+    margin-top: 40px;
 }
+/* end footer  */
 
-@media (max-width: 860px) {
-    
-    img {
-        width: 400px;
-    }
-    .learnwm p {
-        font-size: 35px;
-    }
-    .learnwm span p {
-        font-size: 25px;
-    }
-    .learnwm h2{
-        font-size: 30px;
-    }
-        .learnwm span{
-        font-size: 15px;
-    }
-    .about span{
-        font-size: 35px;
-    }
-    .about p{
-        font-size: 20px;
-    }
-}
-@media (max-width: 730px) {
-    img {
-        width: 300px;
-    }
-        .learnwm{
-            display: flex;
-            align-content: space-evenly;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .about {
-                    display: flex;
-                        align-items: center;
-                        flex-wrap: wrap;
-                        align-content: space-around;
-                        justify-content: center;
-        }
-        footer span {
-            font-size: 20px;
-        }
-        footer a {
-            font-size: 20px;
-        }
-        .lesson span {
-            font-size: 25px;
-        }
-        .lesson a {
-            font-size: 20px;
-        }
-}
